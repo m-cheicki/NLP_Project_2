@@ -13,21 +13,33 @@ Link to GitHub : https://github.com/m-cheicki/NLP_Project_2
 - README.md : rapport
 - <a href="./CELIE_CHEICKISMAIL_NLP_PROJECT2_INSURANCE.ipynb">CELIE_CHEICKISMAIL_NLP_PROJECT2_INSURANCE.ipynb</a> : notebook
 - dataset : dossier contenant les datasets de train et de test
+- dataviz : dossier contenant des captures d'écran des visualisations effectuées
+- model.bin et word2vec.model : deux fichiers générés par le modèle de "word embedding" Word2Vec
 
 ### Préparer le jeu de données
 
-La première étape dans la préparation du jeu de données aura été de convertir la date, données au format _"1 Janvier 1970"_, au format datetime _"yyyy-mm-dd"_.
-La seconde étape a été de gérer les NaN, les seules valeurs manquantes étant dans les colonnes auteur et avis, nous avons pris la décision de les remplacer par des strings. On est parti du principe que l'absence d'avis pouvait être un avis en soi.
+La première étape dans la préparation des données fut la conversion de la date dans le format adéquat. En effet, les données étaient de la forme _"1 Janvier 1970"_ avec d'autres informations non nécessaires pour la suite du traitement. Nous les avons donc transformés au format datetime _"yyyy-mm-dd"_ pour les rendre exploitables. 
 
-### Pré-Processing
+La seconde étape fut la gestion des valeurs nulles. Nous avons remarqué qu'il n'existait qu'une seule valeur nulle pour la colonne des auteurs et une seule pour les avis. Nous avons fait le choix de les remplacer par des chaines de charactères vides. Lla colonne de la note, de l'assureur et du produit étant renseigné nous nous sommes dit qu'il est préférable de la garder, même si la suppression d'une ligne n'aurait pas énormément d'impacte sur la suite. De plus, l'absence d'avis peut également être considérée comme un avis en lui-même (surtout que la note est renseignée).  
+
+
+### Pré-Traitement
 
 #### Stop words
 
-Nous avons fait le choix d'utiliser les mots d'arrêts fourni par la librairie nltk. Cependant nous avons du rajouter pas mal de mots qui n'étaient pas présent . On a prit la liberté de rajouter certains mots relatifs au monde de l'assurance tel que _assurance_ ou _contrat_. Ce choix a été fait suite à notre exploration du jeu de données, où nous avons pu voir que ces mots étaient les plus représentés. Ils ne représentent, cependant, pas  un grand intérêt pour nous puisque quelque soit la note ces mots sont présent.
+Les stop-words, ou mots d'arrêt en français, sont des mots qui ne sont pas indispensables pour la compréhension du contenu en lui même. Une fois exclus, ces termes permettent un traitement plus rapide sur le contenu et les mots-clés qui importent réellement en apportant du sens. De plus, c'est mots d'arrêt sont généralement les mots les plus utilsés dans un texte : les déterminants, les conjonctions de coordination, ... 
+
+Cs mots n'apportant aucune valeur à notre jeu de données et pouvant influencer sur la qualité de nos résultats, nous les enlèvons. Pour cela, nous utilisons la librairie NLTK nous fornissant une liste de mots d'arrêt. 
+
+La limite de cette librairie est qu'elle n'a pas l'air complète en français. Nous décidons donc de la compléter de manière non exhaustive au fur et à mesure, mais cette tâche est très fasitideuse au vu de la richesse de la langue française et du contenu du jeu de données. Par ailleurs, nous cherchons à analyser les avis et les notes données, nous savons que le jeu de données parle d'assurances. Par conséquent, nous décidons également d'y inclure certains termes de ce cadre de notre jeu de données. 
 
 #### Tokenization & Stemming
 
-Pour cette étape, notre choix c'est porté sur word_tokenize et SnowballStemmer de nltk. Pour la tokenization, word_tokenize a été choisi, car il séparait la ponctuation des mots, comparé à d'autre comme TreebankWordTokenizer. Concernant le stemming nous n'avons pas eu énormément de choix, en effet c'est le seul stemmer qui fasse le francais, que nous avons pu trouver. Nous nous sommes rendu compte par la suite qu'il n'est pas forcément très bon. Il y aurait sûrement des points à améliorer de ce coté ci.
+De plus, il est important de tokeniser les mots pour pouvoir les exploiter individuellement et par groupe, et ainsi analyser la similitude, les récurrences, des liens logiques entre les mots. 
+Pour faire cela, nous avons utilisé le word_tockenizer par défaut, c'est-à-dire le TreebankWordTokenizer. 
+
+Pour ce qui est du steeming, nous avons pris le SnowballStemmer de NLTK. Le jeu de données étant en français, il existe très peu de choix, c'est celui que nous avons trouvé qui correspondait à nos attentes minimales.
+
 
 ### Visualisation
 
