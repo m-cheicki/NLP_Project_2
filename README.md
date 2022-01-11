@@ -3,7 +3,7 @@ CELIE Kévin - CHEICK ISMAIL Mariyam
 
 Link to GitHub : https://github.com/m-cheicki/NLP_Project_2
 
-{{ badge }}
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/m-cheicki/NLP_Project_2/]
 
 # Advanced Machine Learning for NLP and Text Processing
 
