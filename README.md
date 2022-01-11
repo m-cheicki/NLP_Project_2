@@ -98,32 +98,39 @@ _Source:[Wikipédia](https://fr.wikipedia.org/wiki/Word2vec)_
 Nous avons ici voulu calculer la similitude entre les mots de notre corpus ou encore les mots qui font penser à des synonymes ou qui seraient en lien entre eux. 
 
 
-### Supervised Learning
+### Apprentissage supervisé
 
-Concernant l'apprentissage supervisé, nous avons essayé deux approches. La première, et celle qui nous a semblé la plus pertinente à la vue du sujet, est la classifaction. Cependant à la vue de l'énoncé, qui aiguillait sur un autre chemin, et par curiosité nous avons aussi explorer de la regression.
+Pour cette partie, nous avons tenté deux approches : une approche de classification et une approche de régression. 
 
 #### Classification
+
+Cette approche de classification résulte du raisonnement suivant : nous avons un nombre défini de valeurs de sorties, qui sont des valeurs discrètes, les notes. Nous avons donc considéré qu'une note était une classe et que nous avons donc 5 classes possibles. 
 
 Tableau récapitulatif des précisions obtenus:
 
 |             | Naives Bayes | SVM          | RandomForest Classifier |
 | :---------- | :----------: | :----------: | :---------------------: |
 | Defaut      | 0.530        | 0.519        | 0.525                   |
-| GridSearch  | 0.533        | 0.521        | Na                      |
+| GridSearch  | 0.533        | 0.521        | NA                      |
 
 #### Regression
 
+Cette approche de régression résulte du raisonnement suivant : nous savons que nos valeurs de sorties sont des valeurs numériques. Même si dans notre cas, il n'existe pas de valeurs continues, ces dernières peuvent être arrondies de sorte à correspondre aux valeurs de sorties attendues. 
+
 Tableau récapitulatif des RMSE obtenus:
 
-|             | RandomForest | Gradient Boosting |
-| :---------- | :----------: | :---------------: |
-| Defaut      | 0.887        | 0.977             |
-| GridSearch  | 1.097        | 0.921             |
+|             | Linear Regression | RandomForest | Gradient Boosting |
+| :---------- | :---------------: | :----------: | :---------------: |
+| Defaut      | 2.138             | 0.887        | 0.977             |
+| GridSearch  | NA                | 1.097        | 0.921             |
+
+Dans les deux approches, nous ne pouvons pas dire que nous avons de très bons résultats, une RMSE de cette fourchette pour des valeurs allant de 1 à 5 nous montre que nous nous trompons d'une échelle, ce qui peut être problématique. 
 
 ### Conclusion
 
+Lors de l'exploration de ce jeu de données, nous avons remarqué qu'il y avait des mots/expressions qui étaient le plus souvent présents en fonction de la note données (n-grams + wordclouds). Cependant, notre data visualisation n'est pas complète, notamment à cause du prétraitement de notre jeu de donnée qui demande énormément de temps. 
+Ce jeu de données étant en français et les fonctions de nettoyage étant plus poussées pour l'anglais, il arrive que le prétraitement ne soit pas complet, qu'il s'agisse des mots d'arrêt ou du stemming. Nous pouvons aussi ajouter que suite au stemming des charactères sont apparus comme les apostrophes ce qui est problématique (pour la LDA par exemple). Aussi, nous avons remarqué qu'il y avait des données en anglais et une personne qui aurait mis des valeurs non sérieuses ("bla bla bla"). En outre, des valeurs numériques se sont glissés dans les avis : numéro de téléphone, prix d'un service..., compliquant le traitement de ces informations et faussant les résulats, notamment pour le 4-grams qui le rend innexploitable. Le prétraitement n'étant pas complet et comme désiré, nous avons eu des difficultés quant à l'interprétation des résultats à certains endroits. 
 
-# Divers
+Ensuite, la visualisation du jeu de données n'est pas suffisante. Il aurait fallu aller encore plus loin et potentiellement créer de nouvelles 'features' grâce aux observations y résultant (feature engineering). 
 
-- Parler des blabla et textes en anglais dans la conclusion.
-- Parler de ce qui aurait pu être fait en plus.
+Pour ce qui est de l'apprentissage supervisé, nous avons pensé à faire un réseau de neurones récurrent (RNN LSTM (Long Term Short Memory)) exploitant le word2vec obtenu avec l'apprentissage non supervisé. Ce type de réseau de neuronnes à des "feedback connections" ce qui permet de prendre en compte non pas l'avis mais l'avis et le contexte autour, les autres valeurs... ce qui renforce la manière d'apprendre et donc de comprendre et prédire les notes. 
