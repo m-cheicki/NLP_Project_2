@@ -3,7 +3,9 @@ CELIE Kévin - CHEICK ISMAIL Mariyam
 
 Link to GitHub : https://github.com/m-cheicki/NLP_Project_2
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/m-cheicki/NLP_Project_2/]
+<a href="https://colab.research.google.com/github/m-cheicki/NLP_Project_2/blob/main/CELIE_CHEICKISMAIL_NLP_PROJECT2_INSURANCE.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Colab badge"/>
+</a>
 
 # Advanced Machine Learning for NLP and Text Processing
 
