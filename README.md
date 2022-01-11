@@ -3,6 +3,7 @@ CELIE Kévin - CHEICK ISMAIL Mariyam
 
 Link to GitHub : https://github.com/m-cheicki/NLP_Project_2
 
+{{ badge }}
 
 # Advanced Machine Learning for NLP and Text Processing
 
@@ -87,7 +88,7 @@ Nous avons adopté deux approches : la première consiste à compter et vectoris
 Cette approche ne nous convenant pas entièrement par le fait que nous ne sachions pas comment ces 10 sujets sont concrètement séparés, nous avons tenté une seconde approche qui consiste à donner les données sous forme de corpus, donner le dictionnaire et le nombre de sujets. L'inconvénient avec cette approche est le fait de devoir spécifier dans le modèle le nombre de sujets, ce qui n'est pas toujours évident de connaitre. Pour notre part, nous avons arbitrairement choisi 5 sujets, car 5 notes possibles. En faisant ainsi, nous avons observé que deux sujets s'englobaient majoritairement. Par conséquent, nous avons décidé de les considérer comme un seul et même sujet. 
 Nous partons donc sur un LDA de 4 sujets. 
 
-En visualisant le graph généré, nous pouvons voir que les mots à connotation positive sur trouvent à l'opposé sur un axe des mots à connotation négative. Nous pouvons donc supposer qu'une similitude entre les mots positives ont été trouvés de même que pour les mots négatifs, grâce à leur fréquence d'appartition. L'explication du deuxième axe n'est pas une tâche simple, nous n'avons pas réussi à l'expliquer : certains mots nous font penser qu'il pourrait s'agir du service fourni ou demandé (téléphone, remboursement, service, demande, recommandation...)
+En visualisant le graph généré, nous pouvons voir que les mots à connotation positive sur trouvent à l'opposé sur un axe des mots à connotation négative. Nous pouvons donc supposer qu'une similitude entre les mots positives a été trouvé de même que pour les mots négatifs, grâce à leur fréquence d'appartition. L'explication du deuxième axe n'est pas une tâche simple, nous n'avons pas réussi à l'expliquer : certains mots nous font penser qu'il pourrait s'agir du service fourni ou demandé (téléphone, remboursement, service, demande, recommandation...)
 
 #### Word2vec
 
@@ -108,7 +109,7 @@ Cette approche de classification résulte du raisonnement suivant : nous avons u
 
 Tableau récapitulatif des précisions obtenus:
 
-|             | Naives Bayes | SVM          | RandomForest Classifier |
+|             | Naive Bayes  | SVM          | RandomForest Classifier |
 | :---------- | :----------: | :----------: | :---------------------: |
 | Defaut      | 0.530        | 0.519        | 0.525                   |
 | GridSearch  | 0.533        | 0.521        | NA                      |
@@ -133,4 +134,4 @@ Ce jeu de données étant en français et les fonctions de nettoyage étant plus
 
 Ensuite, la visualisation du jeu de données n'est pas suffisante. Il aurait fallu aller encore plus loin et potentiellement créer de nouvelles 'features' grâce aux observations y résultant (feature engineering). 
 
-Pour ce qui est de l'apprentissage supervisé, nous avons pensé à faire un réseau de neurones récurrent (RNN LSTM (Long Term Short Memory)) exploitant le word2vec obtenu avec l'apprentissage non supervisé. Ce type de réseau de neuronnes à des "feedback connections" ce qui permet de prendre en compte non pas l'avis mais l'avis et le contexte autour, les autres valeurs... ce qui renforce la manière d'apprendre et donc de comprendre et prédire les notes. 
+Pour ce qui est de l'apprentissage supervisé, nous avons pensé à faire un réseau de neurones récurrent (RNN LSTM (Long Short-Term Memory)) exploitant le word2vec obtenu avec l'apprentissage non supervisé. Ce type de réseau de neuronnes à des "feedback connections" ce qui permet de prendre en compte non pas uniquement l'avis mais l'avis et le contexte autour, les autres valeurs... ce qui renforce la manière d'apprendre et donc de comprendre et prédire les notes. 
