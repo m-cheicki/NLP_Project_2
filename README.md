@@ -38,45 +38,54 @@ La limite de cette librairie est qu'elle n'a pas l'air complète en français. N
 De plus, il est important de tokeniser les mots pour pouvoir les exploiter individuellement et par groupe, et ainsi analyser la similitude, les récurrences, des liens logiques entre les mots. 
 Pour faire cela, nous avons utilisé le word_tockenizer par défaut, c'est-à-dire le TreebankWordTokenizer. 
 
-Pour ce qui est du steeming, nous avons pris le SnowballStemmer de NLTK. Le jeu de données étant en français, il existe très peu de choix, c'est celui que nous avons trouvé qui correspondait à nos attentes minimales.
+Pour ce qui est du stemming, nous avons pris le SnowballStemmer de NLTK. Le jeu de données étant en français, il existe très peu de choix, c'est celui que nous avons trouvé qui correspondait à nos attentes minimales.
 
 
 ### Visualisation
 
 #### Exploration générale
 
-Nous avons dans un premier temps souhaité regarder les notes moyenne par assureur et par produit pour découvrir un peu les données. On se rend compte que les agences d'assurance de moto et les contrats d'assurance moto, on les moyennes les plus hautes.
+Afin de nous faire une idée de ce que contient le jeu de données, nous avons commencé par regarder les notes moyennes par assureur mais également les moyennes par produit. Nous pouvons observer par exemple, que les assureurs de véhicules (moto et auto) sont les mieux notées. 
 
 <img src="dataviz/moy_par_assureur.png" style="width:50%"><img src="dataviz/moy_par_produit.png" style="width:50%">
 
-Par la suite nous avons regardé le nombre d'avis pour chaque note pour chaque assureur, pour voir la repartition. Dans la visualisation ci-dessous nous avons uniquement affiché les notes pour les 10 premières assurances alphabétiquement parlant.
+Ensuite, nous avons regardé le nombre d'avis pour chaque note de chaque assurance, pour voir la repartition du jeu de données. Dans la visualisation ci-dessous nous avons uniquement affiché les notes pour les 10 premières assurances alphabétiquement parlant.
 
 <img src="dataviz/count_par_assureur_par_notes.png">
 
-Pour finir, nous avons souhaité voir l'évolution au fil du temps des notes moyennes des assureurs.
+Pour finir, nous avons souhaité voir l'évolution au fil du temps des notes moyennes annuelles des assureurs afin de voir une tendance temporelle (ont-ils évolué positivement au cours du temps ?)
 
 <img src="dataviz/moy_over_time_par_assureur.png">
 
-#### N-gram
+#### N-grams
 
-On a par la suite visualiser autour de la NLP, on s'est alors ateler à la visualisation des N-gram, plus précisément 2, 3, 4.
+Les n-grams permettent de trouver des séquences textuelles, soulignant des récurrences et donc des similitudes entre les différentes phrases ou morceaux de phrases. 
+Nous avons pour cela voulu étudier plusieurs type de n-grams : les bigrams, trigrams et les 4-grams. 
 
 <img src="dataviz/2gram.PNG"><img src="dataviz/3gram.PNG">
 <img src="dataviz/4gram.PNG">
 
-Cette visualisation nous a principalement permis de voir qu'il y a encore beaucoup à faire sur les mots d'arrêts et le stemming.
+Cette visualisation nous permet de voir qu'il y a encore du prétraitement à compléter, que ce soit sur le nettoyage des valeurs numériques qui ne nous intéresse pas (prix, numéro de téléphone, ...), les mots d'arrêt et le stemming. 
 
 #### Word clouds
 
-Nous avons ensuite chercher à voir quel sont les mots les plus usités dans les avis en fonction de la note. Les visualisations ci-dessous représente cela avec de gauche a droite et de haut en bas les notes de 1, 2, 3, 4, 5 et les mot les plus utilisé tout avis confondu. On reconnait des patterns de mots au sein des notes les plus hautes (4,5) et les notes les plus basses (1,2). Le 3 semble regrouper un mix des patterns des deux côtés.
+Nous avons ensuite chercher à voir quel sont les mots les plus utilisés dans les avis en fonction de la note. Les visualisations ci-dessous représentent cela avec, de gauche à droite et de haut en bas, les notes de 1, 2, 3, 4, 5 et les mots les plus utilisés tous avis confondus. On reconnait des patterns de mots au sein des notes les plus hautes (4,5) et les notes les plus basses (1,2). Le 3 semble regrouper un mélange des deux patterns, ce qui semble cohérent. 
 
 <img src="dataviz/1star.png" style="width:50%"><img src="dataviz/2star.png" style="width:50%">
 <img src="dataviz/3star.png" style="width:50%"><img src="dataviz/4star.png" style="width:50%">
 <img src="dataviz/5star.png" style="width:50%"><img src="dataviz/top100cloud.png" style="width:50%">
 
-### Unsupervised Learning
+### Apprentissage non-supervisé
 
-#### LDA
+#### Latent Dirichlet Allocation (LDA)
+
+L'allocation de Dirichlet latente est un modèle génératif probabiliste qui permet d'observer des similarité de données. Il sert notamment pour la détection de thématique d'un document. 
+
+_Source:[Wikipédia](https://fr.wikipedia.org/wiki/Allocation_de_Dirichlet_latente)_
+
+Nous avons adopté deux approches : la première consiste à compter et vectoriser les mots et se baser sur la fréquence d'apparition pour présenter la similitude entre les différents sujets qui seront défini par le modèle. Cette apprcohe génère 10 sujets pour lequels nous pouvons visualiser les n mots les plus fréquents dans ce sujet. 
+Cette approche ne nous convenant pas entièrement par le fait que nous ne sachions pas comment ces 10 sujets sont concrètement séparés, nous avons tenté une seconde approche qui consiste à donner les données sous forme de corpus, donner le dictionnaire et le nombre de sujets. L'inconvénient avec cette approche est le fait de devoir spécifier dans le modèle le nombre de sujets, ce qui n'est pas toujours évident de connaitre. Pour notre part, nous avons arbitrairement choisi 5 sujets, car 5 notes possibles. En faisant ainsi, nous avons observé que deux sujets s'englobaient majoritairement. Par conséquent, nous avons décidé de les considérer comme un seul et même sujet. 
+Nous partons donc sur un LDA de 4 sujets. 
 
 #### Word2vec
 
