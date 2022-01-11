@@ -61,8 +61,8 @@ Pour finir, nous avons souhaité voir l'évolution au fil du temps des notes moy
 
 On a par la suite visualiser autour de la NLP, on s'est alors ateler à la visualisation des N-gram, plus précisément 2, 3, 4.
 
-<img src="dataviz/2gram.png"><img src="dataviz/3gram.png">
-<img src="dataviz/4gram.png">
+<img src="dataviz/2gram.PNG"><img src="dataviz/3gram.PNG">
+<img src="dataviz/4gram.PNG">
 
 Cette visualisation nous a principalement permis de voir qu'il y a encore beaucoup à faire sur les mots d'arrêts et le stemming.
 
