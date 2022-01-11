@@ -14,9 +14,9 @@ Link to GitHub : https://github.com/m-cheicki/NLP_Project_2
 ### Structure du projet
 
 - README.md : rapport
-- <a href="https://github.com/m-cheicki/NLP_Project_2/blob/main/CELIE_CHEICKISMAIL_NLP_PROJECT2_INSURANCE.ipynb">CELIE_CHEICKISMAIL_NLP_PROJECT2_INSURANCE.ipynb</a> : notebook
+- <a href="./CELIE_CHEICKISMAIL_NLP_PROJECT2_INSURANCE.ipynb">CELIE_CHEICKISMAIL_NLP_PROJECT2_INSURANCE.ipynb</a> : notebook
 - dataset : dossier contenant les datasets de train et de test
-- https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz : dossier contenant des captures d'écran des visualisations effectuées
+- dataviz : dossier contenant des captures d'écran des visualisations effectuées
 - model.bin et word2vec.model : deux fichiers générés par le modèle de "word embedding" Word2Vec
 
 ### Préparer le jeu de données
@@ -50,23 +50,23 @@ Pour ce qui est du stemming, nous avons pris le SnowballStemmer de NLTK. Le jeu 
 
 Afin de nous faire une idée de ce que contient le jeu de données, nous avons commencé par regarder les notes moyennes par assureur mais également les moyennes par produit. Nous pouvons observer par exemple, que les assureurs de véhicules (moto et auto) sont les mieux notées. 
 
-<img src="https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz/moy_par_assureur.png" style="width:50%"><img src="https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz/moy_par_produit.png" style="width:50%">
+<img src="dataviz/moy_par_assureur.png" style="width:50%"><img src="dataviz/moy_par_produit.png" style="width:50%">
 
 Ensuite, nous avons regardé le nombre d'avis pour chaque note de chaque assurance, pour voir la repartition du jeu de données. Dans la visualisation ci-dessous nous avons uniquement affiché les notes pour les 10 premières assurances alphabétiquement parlant.
 
-<img src="https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz/count_par_assureur_par_notes.png">
+<img src="dataviz/count_par_assureur_par_notes.png">
 
 Pour finir, nous avons souhaité voir l'évolution au fil du temps des notes moyennes annuelles des assureurs afin de voir une tendance temporelle (ont-ils évolué positivement au cours du temps ?)
 
-<img src="https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz/moy_over_time_par_assureur.png">
+<img src="dataviz/moy_over_time_par_assureur.png">
 
 #### N-grams
 
 Les n-grams permettent de trouver des séquences textuelles, soulignant des récurrences et donc des similitudes entre les différentes phrases ou morceaux de phrases. 
 Nous avons pour cela voulu étudier plusieurs type de n-grams : les bigrams, trigrams et les 4-grams. 
 
-<img src="https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz/2gram.PNG"><img src="https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz/3gram.PNG">
-<img src="https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz/4gram.PNG">
+<img src="dataviz/2gram.PNG"><img src="dataviz/3gram.PNG">
+<img src="dataviz/4gram.PNG">
 
 Cette visualisation nous permet de voir qu'il y a encore du prétraitement à compléter, que ce soit sur le nettoyage des valeurs numériques qui ne nous intéresse pas (prix, numéro de téléphone, ...), les mots d'arrêt et le stemming. 
 
@@ -74,9 +74,9 @@ Cette visualisation nous permet de voir qu'il y a encore du prétraitement à co
 
 Nous avons ensuite chercher à voir quel sont les mots les plus utilisés dans les avis en fonction de la note. Les visualisations ci-dessous représentent cela avec, de gauche à droite et de haut en bas, les notes de 1, 2, 3, 4, 5 et les mots les plus utilisés tous avis confondus. On reconnait des patterns de mots au sein des notes les plus hautes (4,5) et les notes les plus basses (1,2). Le 3 semble regrouper un mélange des deux patterns, ce qui semble cohérent. 
 
-<img src="https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz/1star.png" style="width:50%"><img src="https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz/2star.png" style="width:50%">
-<img src="https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz/3star.png" style="width:50%"><img src="https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz/4star.png" style="width:50%">
-<img src="https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz/5star.png" style="width:50%"><img src="https://github.com/m-cheicki/NLP_Project_2/blob/main/dataviz/top100cloud.png" style="width:50%">
+<img src="dataviz/1star.png" style="width:50%"><img src="dataviz/2star.png" style="width:50%">
+<img src="dataviz/3star.png" style="width:50%"><img src="dataviz/4star.png" style="width:50%">
+<img src="dataviz/5star.png" style="width:50%"><img src="dataviz/top100cloud.png" style="width:50%">
 
 ### Apprentissage non-supervisé
 
@@ -84,7 +84,7 @@ Nous avons ensuite chercher à voir quel sont les mots les plus utilisés dans l
 
 L'allocation de Dirichlet latente est un modèle génératif probabiliste qui permet d'observer des similarité de données. Il sert notamment pour la détection de thématique d'un document. 
 
-_Source: [Wikipédia](https://fr.wikipedia.org/wiki/Allocation_de_Dirichlet_latente)_
+_Source:[Wikipédia](https://fr.wikipedia.org/wiki/Allocation_de_Dirichlet_latente)_
 
 Nous avons adopté deux approches : la première consiste à compter et vectoriser les mots et se baser sur la fréquence d'apparition pour présenter la similitude entre les différents sujets qui seront défini par le modèle. Cette apprcohe génère 10 sujets pour lequels nous pouvons visualiser les n mots les plus fréquents dans ce sujet. 
 Cette approche ne nous convenant pas entièrement par le fait que nous ne sachions pas comment ces 10 sujets sont concrètement séparés, nous avons tenté une seconde approche qui consiste à donner les données sous forme de corpus, donner le dictionnaire et le nombre de sujets. L'inconvénient avec cette approche est le fait de devoir spécifier dans le modèle le nombre de sujets, ce qui n'est pas toujours évident de connaitre. Pour notre part, nous avons arbitrairement choisi 5 sujets, car 5 notes possibles. En faisant ainsi, nous avons observé que deux sujets s'englobaient majoritairement. Par conséquent, nous avons décidé de les considérer comme un seul et même sujet. 
@@ -96,7 +96,7 @@ En visualisant le graph généré, nous pouvons voir que les mots à connotation
 
 Word2vec est un groupe de modèles utilisé pour le plongement lexical. Ce sont des réseaux de neurones artificiels à deux couches entraînés pour reconstruire le contexte linguistique des mots. 
 
-_Source: [Wikipédia](https://fr.wikipedia.org/wiki/Word2vec)_
+_Source:[Wikipédia](https://fr.wikipedia.org/wiki/Word2vec)_
 
 Nous avons ici voulu calculer la similitude entre les mots de notre corpus ou encore les mots qui font penser à des synonymes ou qui seraient en lien entre eux. 
 
