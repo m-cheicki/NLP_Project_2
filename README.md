@@ -87,7 +87,16 @@ Nous avons adopté deux approches : la première consiste à compter et vectoris
 Cette approche ne nous convenant pas entièrement par le fait que nous ne sachions pas comment ces 10 sujets sont concrètement séparés, nous avons tenté une seconde approche qui consiste à donner les données sous forme de corpus, donner le dictionnaire et le nombre de sujets. L'inconvénient avec cette approche est le fait de devoir spécifier dans le modèle le nombre de sujets, ce qui n'est pas toujours évident de connaitre. Pour notre part, nous avons arbitrairement choisi 5 sujets, car 5 notes possibles. En faisant ainsi, nous avons observé que deux sujets s'englobaient majoritairement. Par conséquent, nous avons décidé de les considérer comme un seul et même sujet. 
 Nous partons donc sur un LDA de 4 sujets. 
 
+En visualisant le graph généré, nous pouvons voir que les mots à connotation positive sur trouvent à l'opposé sur un axe des mots à connotation négative. Nous pouvons donc supposer qu'une similitude entre les mots positives ont été trouvés de même que pour les mots négatifs, grâce à leur fréquence d'appartition. L'explication du deuxième axe n'est pas une tâche simple, nous n'avons pas réussi à l'expliquer : certains mots nous font penser qu'il pourrait s'agir du service fourni ou demandé (téléphone, remboursement, service, demande, recommandation...)
+
 #### Word2vec
+
+Word2vec est un groupe de modèles utilisé pour le plongement lexical. Ce sont des réseaux de neurones artificiels à deux couches entraînés pour reconstruire le contexte linguistique des mots. 
+
+_Source:[Wikipédia](https://fr.wikipedia.org/wiki/Word2vec)_
+
+Nous avons ici voulu calculer la similitude entre les mots de notre corpus ou encore les mots qui font penser à des synonymes ou qui seraient en lien entre eux. 
+
 
 ### Supervised Learning
 
